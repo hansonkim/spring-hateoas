@@ -23,17 +23,6 @@ pipeline {
         }
         stage("Test") {
             parallel {
-//                stage("test: spring-next jdk8") {
-//                    agent {
-//                        docker {
-//                            image 'adoptopenjdk/openjdk8:latest'
-//                            args '-v $HOME/.m2:/root/.m2'
-//                        }
-//                    }
-//                    steps {
-//                        sh "./mvnw -Pspring-next clean dependency:list test -Dsort -B"
-//                    }
-//                }
                 stage("test: jdk11") {
                     agent {
                         docker {
@@ -45,17 +34,6 @@ pipeline {
                         sh "./mvnw clean dependency:list test -Dsort -B"
                     }
                 }
-//                stage("test: spring-next jdk11") {
-//                    agent {
-//                        docker {
-//                            image 'adoptopenjdk/openjdk11:latest'
-//                            args '-v $HOME/.m2:/root/.m2'
-//                        }
-//                    }
-//                    steps {
-//                        sh "./mvnw -Pspring-next clean dependency:list test -Dsort -B"
-//                    }
-//                }
                 stage("test: jdk12") {
                     agent {
                         docker {
@@ -67,17 +45,6 @@ pipeline {
                         sh "./mvnw clean dependency:list test -Dsort -B"
                     }
                 }
-//                stage("test: spring-next jdk12") {
-//                    agent {
-//                        docker {
-//                            image 'adoptopenjdk/openjdk12:latest'
-//                            args '-v $HOME/.m2:/root/.m2'
-//                        }
-//                    }
-//                    steps {
-//                        sh "./mvnw -Pspring-next clean dependency:list test -Dsort -B"
-//                    }
-//                }
             }
         }
         stage('Release to artifactory') {
