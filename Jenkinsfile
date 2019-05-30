@@ -56,10 +56,10 @@ pipeline {
                         sh "./mvnw -Pspring-next clean dependency:list test -Dsort -B"
                     }
                 }
-                stage("test: jdk13") {
+                stage("test: jdk12") {
                     agent {
                         docker {
-                            image 'adoptopenjdk/openjdk13:latest'
+                            image 'adoptopenjdk/openjdk12:latest'
                             args '-v $HOME/.m2:/root/.m2'
                         }
                     }
@@ -67,10 +67,10 @@ pipeline {
                         sh "./mvnw clean dependency:list test -Dsort -B"
                     }
                 }
-                stage("test: spring-next jdk13") {
+                stage("test: spring-next jdk12") {
                     agent {
                         docker {
-                            image 'adoptopenjdk/openjdk13:latest'
+                            image 'adoptopenjdk/openjdk12:latest'
                             args '-v $HOME/.m2:/root/.m2'
                         }
                     }
